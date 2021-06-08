@@ -45,7 +45,8 @@ class Subnet:
         return self.__exponent
 
     def find_usage_percentage(self):
-        self.__usage_percentage = self.__hosts_required/self.__hosts_found
+        if (self.__hosts_found > 0):
+            self.__usage_percentage = self.__hosts_required/self.__hosts_found
 
     def get_usage_percentage(self):
         return self.__usage_percentage
@@ -95,8 +96,8 @@ class Subnet:
     def find_first_usable_host(self):
         hosts = self.__subnet_address[0] * (256 ** 3) + self.__subnet_address[1] * (256 ** 2) + self.__subnet_address[
             2] * (256 ** 1) + self.__subnet_address[3] * (256 ** 0) + 1
-        exp = 3
 
+        exp = 3
         self.__first_usable_host = []
         for x in range(4):
             self.__first_usable_host.append(hosts // (256 ** exp))
@@ -109,8 +110,8 @@ class Subnet:
     def find_last_usable_host(self):
         hosts = self.__subnet_address[0] * (256 ** 3) + self.__subnet_address[1] * (256 ** 2) + self.__subnet_address[
             2] * (256 ** 1) + self.__subnet_address[3] * (256 ** 0) + self.__hosts_found
-        exp = 3
 
+        exp = 3
         self.__last_usable_host = []
         for x in range(4):
             self.__last_usable_host.append(hosts // (256 ** exp))
@@ -123,8 +124,8 @@ class Subnet:
     def find_broadcast_address(self):
         hosts = self.__subnet_address[0] * (256 ** 3) + self.__subnet_address[1] * (256 ** 2) + self.__subnet_address[
             2] * (256 ** 1) + self.__subnet_address[3] * (256 ** 0) + self.__hosts_found + 1
-        exp = 3
 
+        exp = 3
         self.__broadcast_address = []
         for x in range(4):
             self.__broadcast_address.append(hosts // (256 ** exp))
@@ -137,8 +138,8 @@ class Subnet:
     def find_next_subnet_address(self):
         hosts = self.__subnet_address[0] * (256 ** 3) + self.__subnet_address[1] * (256 ** 2) + self.__subnet_address[
             2] * (256 ** 1) + self.__subnet_address[3] * (256 ** 0) + self.__hosts_found + 2
-        exp = 3
 
+        exp = 3
         self.__next_subnet_address = []
         for x in range(4):
             self.__next_subnet_address.append(hosts // (256 ** exp))
